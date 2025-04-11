@@ -1,36 +1,33 @@
-package org.example.demo.repositories;
+package org.example.demo.components;
 
 
 
 public class AccountType {
     private int Id;
     private AccountTypeEnum accountName;
-    private double interestRate;
+    private double fixedAccInterestRate = 0.0;
+    private double savingAccInterestRate = 0.0;
     private boolean minBalanceRequired;
     private double minBalance;
     private boolean overdraftAllowed;
     private double overdraftLimit;
-    // Applies only on fixed account
-    private double principal;
     private String description;
 
     public AccountType(
             AccountTypeEnum accountName,
-            double interestRate,
+            double fixedAccInterestRate,
+            double savingAccInterestRate,
             boolean minBalanceRequired,
             double minBalance,
             boolean overdraftAllowed,
             double overdraftLimit,
-            double principal,
             String description) {
 
         this.accountName = accountName;
-        this.interestRate = interestRate;
         this.minBalanceRequired = minBalanceRequired;
         this.minBalance = minBalance;
         this.overdraftAllowed = overdraftAllowed;
         this.overdraftLimit = overdraftLimit;
-        this.principal = principal;
         this.description = description;
     }
 
@@ -58,13 +55,7 @@ public class AccountType {
         this.minBalanceRequired = minBalanceRequired;
     }
 
-    public double getInterestRate() {
-        return interestRate;
-    }
 
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
 
     public int getId() {
         return Id;
@@ -90,12 +81,20 @@ public class AccountType {
         this.overdraftLimit = overdraftLimit;
     }
 
-    public double getPrincipal() {
-        return principal;
+    public double getFixedAccInterestRate() {
+        return fixedAccInterestRate;
     }
 
-    public void setPrincipal(double principal) {
-        this.principal = principal;
+    public void setFixedAccInterestRate(double fixedAccInterestRate) {
+        this.fixedAccInterestRate = fixedAccInterestRate;
+    }
+
+    public double getSavingAccInterestRate() {
+        return savingAccInterestRate;
+    }
+
+    public void setSavingAccInterestRate(double savingAccInterestRate) {
+        this.savingAccInterestRate = savingAccInterestRate;
     }
 
     public String getDescription() {
@@ -111,12 +110,10 @@ public class AccountType {
         return "AccountType{" +
                 "Id=" + Id +
                 ", accountName=" + accountName +
-                ", interestRate=" + interestRate +
                 ", minBalanceRequired=" + minBalanceRequired +
                 ", minBalance=" + minBalance +
                 ", overdraftAllowed=" + overdraftAllowed +
                 ", overdraftLimit=" + overdraftLimit +
-                ", principal=" + principal +
                 ", description='" + description + '\'' +
                 '}';
     }

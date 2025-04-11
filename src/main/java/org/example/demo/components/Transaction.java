@@ -1,14 +1,15 @@
-package org.example.demo.repositories;
+package org.example.demo.components;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Transaction {
     private TransactionTypeEnum type;
     private double amount;
-    private Date date;
+    private LocalDate date;
 
     // Constructor
-    public Transaction(TransactionTypeEnum type, double amount, Date date) {
+    public Transaction(TransactionTypeEnum type, double amount, LocalDate date) {
         this.type = type;
         this.amount = amount;
         this.date = date;
@@ -31,11 +32,20 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "type=" + type +
+                ", amount=" + amount +
+                ", date=" + date +
+                '}';
+    }
+
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

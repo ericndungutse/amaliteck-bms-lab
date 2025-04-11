@@ -1,4 +1,4 @@
-package org.example.demo.repositories;
+package org.example.demo.components;
 public class CurrentAccount extends AbstractAccount {
     public CurrentAccount(AccountType accountType, String holderName) {
         super(accountType, holderName);

@@ -1,4 +1,4 @@
-package org.example.demo.repositories;
+package org.example.demo.components;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +18,11 @@ public abstract class AbstractAccount implements Account{
         this.holderName = holderName;
         this.balance  = 0.0;
     }
+
+    public AbstractAccount(String holderName) {
+        this.holderName = holderName;
+    }
+
     public void deposit(double amount) {
 
     }

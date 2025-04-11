@@ -13,6 +13,6 @@ module org.example.demo {
 
     opens org.example.demo to javafx.fxml;
     exports org.example.demo;
-    exports org.example.demo.repositories;
-    opens org.example.demo.repositories to javafx.fxml;
+    exports org.example.demo.components;
+    opens org.example.demo.components to javafx.fxml;
 }

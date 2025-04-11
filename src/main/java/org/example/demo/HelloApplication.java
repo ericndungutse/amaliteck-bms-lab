@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.demo.repositories.Account;
-import org.example.demo.repositories.AccountType;
-import org.example.demo.repositories.AccountTypeEnum;
-import org.example.demo.repositories.CurrentAccount;
+import org.example.demo.components.Account;
+import org.example.demo.components.AccountType;
+import org.example.demo.components.AccountTypeEnum;
+import org.example.demo.components.SavingAccount;
 
 import java.io.IOException;
 
@@ -22,28 +22,44 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-//        launch();
-        System.out.println("Hello From App");
-
-        AccountType currentAccount = new AccountType(
-                AccountTypeEnum.CURRENT, // Account type
-                0,                     // Interest rate
-                false,                    // Minimum balance required
-                0,                  // Minimum balance
-                true,                    // Overdraft allowed
-                500.0,                   // Overdraft limit
-                0.0,                 // Principal
-                "Current account with overdraft facility" // Description
+        // Savings Account Type Setup
+        AccountType savingsAccount = new AccountType(
+                AccountTypeEnum.SAVINGS,          // Account type
+                0.04,                             // Interest rate (e.g., 4%)
+                0.0,
+                true,                             // Minimum balance required
+                1000.0,                           // Minimum balance
+                false,                            // Overdraft allowed
+                0.0,                              // Overdraft limit
+                "Savings account with interest accumulation" // Description
         );
 
-        Account currAcc = new CurrentAccount(currentAccount, "Eric");
-//        Account currAcc2 = new CurrentAccount(currentAccount, "James");
+        Account savingAcc1 = new SavingAccount("Eric", savingsAccount, 3000);
 
-        System.out.println(currentAccount);
-        System.out.println(currAcc.getBalance());
-//        System.out.println(currAcc2);
+        System.out.println(savingAcc1);
 
-        currAcc.withdraw(3000);
-        System.out.println(currAcc.getBalance());
+//        launch();
+        System.out.println("Hello From App");
+//
+//        AccountType currentAccount = new AccountType(
+//                AccountTypeEnum.CURRENT, // Account type
+//                0,                     // Interest rate
+//                false,                    // Minimum balance required
+//                0,                  // Minimum balance
+//                true,                    // Overdraft allowed
+//                500.0,                   // Overdraft limit
+//                0.0,                 // Principal
+//                "Current account with overdraft facility" // Description
+//        );
+//
+//        Account currAcc = new CurrentAccount(currentAccount, "Eric");
+////        Account currAcc2 = new CurrentAccount(currentAccount, "James");
+//
+//        System.out.println(currentAccount);
+//        System.out.println(currAcc.getBalance());
+////        System.out.println(currAcc2);
+//
+//        currAcc.withdraw(3000);
+//        System.out.println(currAcc.getBalance());
     }
 }

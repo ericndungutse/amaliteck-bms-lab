@@ -1,4 +1,4 @@
-package org.example.demo.repositories;
+package org.example.demo.components;
 
 public enum AccountTypeEnum {
     SAVINGS,
