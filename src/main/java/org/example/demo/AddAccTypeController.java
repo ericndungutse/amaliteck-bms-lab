@@ -7,15 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class AddAccTypeController {
     @FXML
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onBackButtonClick() {
         try {
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/add-account-type.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/hello-view.fxml"));
             AnchorPane newPane = loader.load();
 
             // Create a new scene with the loaded FXML content
@@ -35,5 +35,4 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
 }
