@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.demo.repositories.Account;
 import org.example.demo.repositories.AccountType;
 import org.example.demo.repositories.AccountTypeEnum;
+import org.example.demo.repositories.CurrentAccount;
 
 import java.io.IOException;
 
@@ -25,7 +27,7 @@ public class HelloApplication extends Application {
 
         AccountType currentAccount = new AccountType(
                 AccountTypeEnum.CURRENT, // Account type
-                3.5,                     // Interest rate
+                0,                     // Interest rate
                 false,                    // Minimum balance required
                 0,                  // Minimum balance
                 true,                    // Overdraft allowed
@@ -34,7 +36,14 @@ public class HelloApplication extends Application {
                 "Current account with overdraft facility" // Description
         );
 
+        Account currAcc = new CurrentAccount(currentAccount, "Eric");
+//        Account currAcc2 = new CurrentAccount(currentAccount, "James");
 
         System.out.println(currentAccount);
+        System.out.println(currAcc.getBalance());
+//        System.out.println(currAcc2);
+
+        currAcc.withdraw(3000);
+        System.out.println(currAcc.getBalance());
     }
 }
