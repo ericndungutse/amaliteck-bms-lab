@@ -1,4 +1,6 @@
-package org.example.demo.components;
+package org.example.demo.accounts;
+
+import org.example.demo.accountTypes.AccountType;
 
 import java.time.LocalDate;
 
@@ -9,18 +11,26 @@ public class SavingAccount extends AbstractAccount {
        super(type, holderName);
        this.initialDeposit = initialDeposit;
        this.balance = initialDeposit;
-       this.transactions.add(new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION, initialDeposit, LocalDate.now()));
+       this.transactions.add(new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION, initialDeposit));
     }
 
     @Override
     public void withdraw(double amount) {
-//        // Assuming minimum balance needs to be maintained
-//        double minimumBalance = getType().getMinimumBalance();
-//        if (getBalance() - amount < minimumBalance) {
-//            throw new IllegalArgumentException("Insufficient funds. Minimum balance requirement not met.");
-//        }
-//        setBalance(getBalance() - amount);
-//        addTransaction(new TransactionClass(getAccountNumber(), TransactionTypeEnum.withdraw, amount));
+        // Calculate Balance
+        double balance = this.balance - amount;
+
+
+        // Check if balance is less than minimum balance
+        if (balance < this.type.getMinBalance()) {
+            throw new IllegalArgumentException("Insufficient funds. Minimum balance requirement not met.");
+        }
+
+        // Update balance
+        this.setBalance(balance);
+
+        // create transaction
+        Transaction trans = new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION,amount);
+        this.transactions.add(trans);
     }
 
     @Override

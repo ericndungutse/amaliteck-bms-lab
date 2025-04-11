@@ -13,6 +13,8 @@ module org.example.demo {
 
     opens org.example.demo to javafx.fxml;
     exports org.example.demo;
-    exports org.example.demo.components;
-    opens org.example.demo.components to javafx.fxml;
+    exports org.example.demo.accounts;
+    opens org.example.demo.accounts to javafx.fxml;
+    exports org.example.demo.accountTypes;
+    opens org.example.demo.accountTypes to javafx.fxml;
 }

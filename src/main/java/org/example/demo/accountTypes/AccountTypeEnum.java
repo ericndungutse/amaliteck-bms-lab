@@ -1,4 +1,4 @@
-package org.example.demo.components;
+package org.example.demo.accountTypes;
 
 public enum AccountTypeEnum {
     SAVINGS,

@@ -1,4 +1,6 @@
-package org.example.demo.components;
+package org.example.demo.accounts;
+
+import org.example.demo.accountTypes.AccountType;
 
 import java.util.LinkedList;
 import java.util.List;

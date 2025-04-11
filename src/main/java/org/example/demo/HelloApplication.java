@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.demo.components.Account;
-import org.example.demo.components.AccountType;
-import org.example.demo.components.AccountTypeEnum;
-import org.example.demo.components.SavingAccount;
+import org.example.demo.accounts.Account;
+import org.example.demo.accountTypes.AccountType;
+import org.example.demo.accountTypes.AccountTypeEnum;
+import org.example.demo.accounts.SavingAccount;
 
 import java.io.IOException;
 
@@ -36,7 +36,8 @@ public class HelloApplication extends Application {
 
         Account savingAcc1 = new SavingAccount("Eric", savingsAccount, 3000);
 
-        System.out.println(savingAcc1);
+
+        System.out.println(savingAcc1.getBalance());
 
 //        launch();
         System.out.println("Hello From App");

@@ -1,4 +1,7 @@
-package org.example.demo.components;
+package org.example.demo.accounts;
+
+import org.example.demo.accountTypes.AccountType;
+
 public class CurrentAccount extends AbstractAccount {
     public CurrentAccount(AccountType accountType, String holderName) {
         super(accountType, holderName);
@@ -14,6 +17,9 @@ public class CurrentAccount extends AbstractAccount {
         }
         // If No, update balance
         this.setBalance(balance);
+
+        // Create Transaction
+        Transaction trans = new Transaction(TransactionTypeEnum.DEPOSIT, amount);
     }
 
     @Override

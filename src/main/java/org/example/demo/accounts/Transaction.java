@@ -1,7 +1,6 @@
-package org.example.demo.components;
+package org.example.demo.accounts;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Transaction {
     private TransactionTypeEnum type;
@@ -9,10 +8,10 @@ public class Transaction {
     private LocalDate date;
 
     // Constructor
-    public Transaction(TransactionTypeEnum type, double amount, LocalDate date) {
+    public Transaction(TransactionTypeEnum type, double amount) {
         this.type = type;
         this.amount = amount;
-        this.date = date;
+        this.date = LocalDate.now();
     }
 
     // Getters and Setters

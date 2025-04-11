@@ -1,4 +1,4 @@
-package org.example.demo.components;
+package org.example.demo.accounts;
 
 import java.util.LinkedList;
 
