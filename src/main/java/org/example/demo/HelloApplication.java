@@ -30,17 +30,33 @@ public class HelloApplication extends Application {
         AccountTypeService accTypeSrv = new AccountTypeService(accountTypeRepo);
         AccountService accSrv = new AccountService(accTypeSrv);
 
-       AccountType newAccType =  accTypeSrv.createAccountType( "current",
+       AccountType currentAccType =  accTypeSrv.createAccountType( "current",
                 0,
-                0.4,
+                0,
                 false,
                 0,
                 true,
                 500.0,
                 "Earn a lot");
 
-        accSrv.createAccount("Eric");
-        System.out.println(accSrv.getAccountByAccNumber(    1));
+       AccountType savingAccType =  accTypeSrv.createAccountType( "saving",
+                0,
+                0.4,
+                true,
+                300,
+                false,
+                0,
+                "Earn a lot");
+
+        System.out.println(accSrv.createAccount("Eric"));
+
+        try {
+            // Code that may throw an exception
+        System.out.println(accSrv.createAccount("Tuyizere", 200));
+        } catch (RuntimeException e) {
+            // Code to handle the exception
+            System.out.println("👎" + e.getMessage());
+        }
 
 
 
