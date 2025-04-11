@@ -1,4 +1,4 @@
-package org.example.demo.accounts;
+package org.example.demo.model;
 
 import org.example.demo.accountTypes.AccountType;
 
@@ -17,5 +17,10 @@ public class FixedAccount extends AbstractAccount{
     @Override
     public double getBalance(){
         return  this.balance;
+    }
+
+    @Override
+    public Object getAccountNumber() {
+        return null;
     }
 }

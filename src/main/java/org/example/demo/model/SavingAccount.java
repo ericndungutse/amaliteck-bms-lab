@@ -1,8 +1,6 @@
-package org.example.demo.accounts;
+package org.example.demo.model;
 
 import org.example.demo.accountTypes.AccountType;
-
-import java.time.LocalDate;
 
 public class SavingAccount extends AbstractAccount {
     private final double initialDeposit;

@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.demo.accounts.Account;
+import org.example.demo.model.Account;
 import org.example.demo.accountTypes.AccountType;
 import org.example.demo.accountTypes.AccountTypeEnum;
-import org.example.demo.accounts.SavingAccount;
+import org.example.demo.model.SavingAccount;
 
 import java.io.IOException;
 

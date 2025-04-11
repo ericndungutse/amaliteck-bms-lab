@@ -1,4 +1,4 @@
-package org.example.demo.accounts;
+package org.example.demo.model;
 
 import org.example.demo.accountTypes.AccountType;
 

@@ -1,4 +1,4 @@
-package org.example.demo.accounts;
+package org.example.demo.model;
 
 import org.example.demo.accountTypes.AccountType;
 
@@ -20,6 +20,11 @@ public class CurrentAccount extends AbstractAccount {
 
         // Create Transaction
         Transaction trans = new Transaction(TransactionTypeEnum.DEPOSIT, amount);
+    }
+
+    @Override
+    public Object getAccountNumber() {
+        return null;
     }
 
     @Override
