@@ -2,8 +2,7 @@ package org.example.demo.accountTypes;
 
 
 public class AccountType {
-    private int Id;
-    private AccountTypeEnum accountName;
+    private String name;
     private double fixedAccInterestRate = 0.0;
     private double savingAccInterestRate = 0.0;
     private boolean minBalanceRequired;
@@ -13,7 +12,7 @@ public class AccountType {
     private String description;
 
     public AccountType(
-            AccountTypeEnum accountName,
+            String name,
             double fixedAccInterestRate,
             double savingAccInterestRate,
             boolean minBalanceRequired,
@@ -22,7 +21,7 @@ public class AccountType {
             double overdraftLimit,
             String description) {
 
-        this.accountName = accountName;
+        this.name = name;
         this.minBalanceRequired = minBalanceRequired;
         this.minBalance = minBalance;
         this.overdraftAllowed = overdraftAllowed;
@@ -54,22 +53,12 @@ public class AccountType {
         this.minBalanceRequired = minBalanceRequired;
     }
 
-
-
-    public int getId() {
-        return Id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public AccountTypeEnum getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(AccountTypeEnum accountName) {
-        this.accountName = accountName;
+    public void setAccountName(String name) {
+        this.name = name;
     }
 
     public double getOverdraftLimit() {
@@ -107,8 +96,7 @@ public class AccountType {
     @Override
     public String toString() {
         return "AccountType{" +
-                "Id=" + Id +
-                ", accountName=" + accountName +
+                ", name=" + name +
                 ", minBalanceRequired=" + minBalanceRequired +
                 ", minBalance=" + minBalance +
                 ", overdraftAllowed=" + overdraftAllowed +

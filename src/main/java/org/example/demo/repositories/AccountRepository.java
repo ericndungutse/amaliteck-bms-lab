@@ -16,21 +16,15 @@ public class AccountRepository {
     }
 
     // Get account by account number
-    public Optional<Account> getAccountByAccountNumber(String accountNumber) {
-        Optional<Account> account = accounts.stream().filter(acc -> acc.getAccountNumber().equals(accountNumber)).findFirst();
-
-        if(account.isPresent()){
-            return  account;
-        } else{
-            throw new RuntimeException("Account not Found");
-        }
+    public Account getAccountByAccountNumber(int accountNumber) {
+        return accounts.stream().filter(acc -> acc.getAccountNumber() == accountNumber).findFirst().orElseThrow(()->  new RuntimeException("Account not found!"));
     }
 
     // Update Account
     public void updateAccount(Account account) {
         for (int i = 0; i < accounts.size(); i++) {
             Account existingAccount = accounts.get(i);
-            if (existingAccount.getAccountNumber().equals(account.getAccountNumber())) {
+            if (existingAccount.getAccountNumber() == account.getAccountNumber()) {
                 accounts.set(i, account);
                 return;
             }

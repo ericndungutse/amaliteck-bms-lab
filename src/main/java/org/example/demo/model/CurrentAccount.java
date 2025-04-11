@@ -23,11 +23,6 @@ public class CurrentAccount extends AbstractAccount {
     }
 
     @Override
-    public Object getAccountNumber() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "CurrentAccount{" +
                 "accountNumber=" + accountNumber +

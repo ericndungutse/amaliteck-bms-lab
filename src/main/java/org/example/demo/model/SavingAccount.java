@@ -42,6 +42,7 @@ public class SavingAccount extends AbstractAccount {
                 '}';
     }
 
+    @Override
     public double getBalance() {
         double rate = this.type.getSavingAccInterestRate();
         return this.balance + (this.balance * rate);

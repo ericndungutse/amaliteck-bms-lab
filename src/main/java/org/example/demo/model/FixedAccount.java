@@ -16,11 +16,8 @@ public class FixedAccount extends AbstractAccount{
 
     @Override
     public double getBalance(){
-        return  this.balance;
+        return  this.balance + 1;
     }
 
-    @Override
-    public Object getAccountNumber() {
-        return null;
-    }
+
 }
