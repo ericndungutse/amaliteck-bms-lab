@@ -1,0 +1,1 @@
+![Provisional Class Diagram](C:\Users\davnd\Downloads\Amalitech-Bank Managment System-Design-Page-1.drawio.png)
