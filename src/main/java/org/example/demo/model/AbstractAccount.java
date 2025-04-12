@@ -51,8 +51,20 @@ public abstract class AbstractAccount implements Account{
     }
 
 
-    public LinkedList<String> getLastNTransactions() {
-        return null;
+    public LinkedList<Transaction> getLastNTransactions(int n) {
+        LinkedList<Transaction> result = new LinkedList<>();
+        int size = transactions.size();
+
+        if (n <= 0) {
+            return result;
+        }
+
+        int startIndex = Math.max(0, size - n);
+        for (int i = startIndex; i < size; i++) {
+            result.add(transactions.get(i));
+        }
+
+        return result;
     }
 
 }

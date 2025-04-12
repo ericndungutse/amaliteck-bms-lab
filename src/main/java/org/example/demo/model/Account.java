@@ -8,7 +8,7 @@ public interface Account {
     void deposit(double amount);
     void withdraw(double amount);
     double getBalance();
-    LinkedList<String> getLastNTransactions();
+    LinkedList<Transaction> getLastNTransactions(int n);
     int getAccountNumber();
     void setBalance(double amount);
     AccountType getType();

@@ -4,6 +4,7 @@ import org.example.demo.model.*;
 import org.example.demo.repositories.AccountRepository;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 public class AccountService {
     private final AccountRepository accountRepository;
@@ -97,9 +98,10 @@ public class AccountService {
         System.out.println("Withdrawal of " + amount + " successful. New balance: " + accountRepository.getAccountByAccountNumber(accountNumber).getBalance());
     }
 
-//    public List<Transaction> getLastNTransactions(String accountNumber, int n) {
-//        return accountRepository.getLastNTransactions(accountNumber, n);
-//    }
+    public LinkedList<Transaction> getLastNTransactions(int accountNumber, int n) {
+        Account acc = accountRepository.getAccountByAccountNumber(accountNumber);
+        return acc.getLastNTransactions(n);
+    }
 
     public Account getAccountByAccNumber(int accountNumber) {
         return accountRepository.getAccountByAccountNumber(accountNumber);

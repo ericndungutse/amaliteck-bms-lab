@@ -77,10 +77,16 @@ public class HelloApplication extends Application {
 //
 //            System.out.println(accSrv.getAccountByAccNumber(1));
 
+            System.out.println(accTypeSrv.getAllAccountTypes());
 //            // Fixed Account
             Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,12));
             accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
             accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 40);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 500);
+            System.out.println(accSrv.getLastNTransactions(fixedAcc.getAccountNumber(), 2));
 //            System.out.println(fixedAcc);
 //            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
 //            System.out.println(fixedAcc);
