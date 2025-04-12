@@ -12,7 +12,7 @@ public class FixedAccount extends AbstractAccount{
         this.interestRate = accountType.getFixedAccInterestRate();
         this.principal = principal;
         this.maturityDate = maturityDate;
-        this.balance = principal;
+        this.balance = principal + (principal * accountType.getFixedAccInterestRate());
         this.transactions.add(new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION, principal));
     }
 
@@ -46,7 +46,7 @@ public class FixedAccount extends AbstractAccount{
         if (today.isBefore(this.maturityDate)) {
             return -1;
         }
-        return this.principal + (this.principal * this.interestRate);
+        return this.balance;
     }
 
     @Override

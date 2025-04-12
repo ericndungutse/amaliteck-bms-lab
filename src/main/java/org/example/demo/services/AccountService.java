@@ -96,12 +96,11 @@ public class AccountService {
         accountRepository.updateAccount(account);
         System.out.println("Withdrawal of " + amount + " successful. New balance: " + accountRepository.getAccountByAccountNumber(accountNumber).getBalance());
     }
-//
-//
+
 //    public List<Transaction> getLastNTransactions(String accountNumber, int n) {
 //        return accountRepository.getLastNTransactions(accountNumber, n);
 //    }
-//
+
     public Account getAccountByAccNumber(int accountNumber) {
         return accountRepository.getAccountByAccountNumber(accountNumber);
     }

@@ -79,11 +79,11 @@ public class HelloApplication extends Application {
 
 //            // Fixed Account
             Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,12));
-            System.out.println(fixedAcc);
             accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
-            System.out.println(fixedAcc);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
-            System.out.println(fixedAcc);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+//            System.out.println(fixedAcc);
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
+//            System.out.println(fixedAcc);
 
 
 
