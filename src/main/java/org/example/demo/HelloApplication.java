@@ -17,86 +17,87 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 520, 500);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        AccountTypeRepository accountTypeRepo = new AccountTypeRepository();
-        AccountTypeService accTypeSrv = new AccountTypeService(accountTypeRepo);
-        AccountService accSrv = new AccountService(accTypeSrv);
-
-       AccountType currentAccType =  accTypeSrv.createAccountType( "current",
-                0,
-                false,
-                0,
-                true,
-                500.0,
-                "Earn a lot");
-
-       AccountType savingAccType =  accTypeSrv.createAccountType( "saving",
-                0,
-                true,
-                300,
-                false,
-                0,
-                "Earn a lot");
-
-       AccountType fixedAccType =  accTypeSrv.createAccountType( "fixed",
-                1.02,
-                false,
-                0,
-                false,
-                0,
-                "Earn a lot");
-
-        try {
-            // Current Account
-//            Account currAccount = accSrv.createAccount("Eric");
+        launch();
+//        AccountTypeRepository accountTypeRepo = new AccountTypeRepository();
+//        AccountTypeService accTypeSrv = new AccountTypeService(accountTypeRepo);
+//        AccountService accSrv = new AccountService(accTypeSrv);
 //
-//            accSrv.deposit(1, 300);
-//            System.out.println(accSrv.getAccountByAccNumber(1));
-//            accSrv.deposit(1,200);
-//            System.out.println(accSrv.getAccountByAccNumber(1));
+//       AccountType currentAccType =  accTypeSrv.createAccountType( "current",
+//                0,
+//                false,
+//                0,
+//                true,
+//                500.0,
+//                "Earn a lot");
 //
-//            System.out.println("Afyer withdraw");
-//            accSrv.withdraw(1, 1000);
-//            System.out.println(accSrv.getAccountByAccNumber(1));
-
-
-//            System.out.println(currAccount);
-//            accSrv.withdraw(currAccount.getAccountNumber(), 100);
-//            System.out.println(currAccount);
-
-            // Saving Account
-//            Account savingAcc = accSrv.createAccount("Tuyizere", 500);
-//            accSrv.deposit(savingAcc.getAccountNumber(), 500);
-//            accSrv.withdraw(1,200);
+//       AccountType savingAccType =  accTypeSrv.createAccountType( "saving",
+//                0,
+//                true,
+//                300,
+//                false,
+//                0,
+//                "Earn a lot");
 //
-//            System.out.println(accSrv.getAccountByAccNumber(1));
-
-            System.out.println(accTypeSrv.getAllAccountTypes());
-//            // Fixed Account
-            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,12));
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 40);
-            accSrv.withdraw(fixedAcc.getAccountNumber(), 500);
-            System.out.println(accSrv.getLastNTransactions(fixedAcc.getAccountNumber(), 2));
-//            System.out.println(fixedAcc);
+//       AccountType fixedAccType =  accTypeSrv.createAccountType( "fixed",
+//                1.02,
+//                false,
+//                0,
+//                false,
+//                0,
+//                "Earn a lot");
+//
+//        try {
+//            // Current Account
+////            Account currAccount = accSrv.createAccount("Eric");
+////
+////            accSrv.deposit(1, 300);
+////            System.out.println(accSrv.getAccountByAccNumber(1));
+////            accSrv.deposit(1,200);
+////            System.out.println(accSrv.getAccountByAccNumber(1));
+////
+////            System.out.println("Afyer withdraw");
+////            accSrv.withdraw(1, 1000);
+////            System.out.println(accSrv.getAccountByAccNumber(1));
+//
+//
+////            System.out.println(currAccount);
+////            accSrv.withdraw(currAccount.getAccountNumber(), 100);
+////            System.out.println(currAccount);
+//
+//            // Saving Account
+////            Account savingAcc = accSrv.createAccount("Tuyizere", 500);
+////            accSrv.deposit(savingAcc.getAccountNumber(), 500);
+////            accSrv.withdraw(1,200);
+////
+////            System.out.println(accSrv.getAccountByAccNumber(1));
+//
+//            System.out.println(accTypeSrv.getAllAccountTypes());
+////            // Fixed Account
+//            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,12));
 //            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
-//            System.out.println(fixedAcc);
-
-
-
-        } catch (RuntimeException e) {
-            // Code to handle the exception
-            System.out.println("👎" + e.getMessage());
-        }
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 450);
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 40);
+//            accSrv.withdraw(fixedAcc.getAccountNumber(), 500);
+//            System.out.println(accSrv.getLastNTransactions(fixedAcc.getAccountNumber(), 2));
+////            System.out.println(fixedAcc);
+////            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
+////            System.out.println(fixedAcc);
+//
+//
+//
+//        } catch (RuntimeException e) {
+//            // Code to handle the exception
+//            System.out.println("👎" + e.getMessage());
+//        }
 
 
 

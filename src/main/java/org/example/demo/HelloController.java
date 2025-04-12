@@ -3,37 +3,61 @@ package org.example.demo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.demo.repositories.AccountRepository;
+import org.example.demo.repositories.AccountTypeRepository;
+import org.example.demo.services.AccountTypeService;
+
 
 public class HelloController {
+    @FXML private TextField accountTypeField;
+    @FXML private TextField interestRateField;
+    @FXML private CheckBox minBalanceRequiredCheck;
+    @FXML private TextField minBalanceField;
+    @FXML private CheckBox overdraftAllowedCheck;
+    @FXML private TextField overdraftLimitField;
+    @FXML private TextArea descriptionArea;
     @FXML
+
     private Label welcomeText;
+    AccountTypeRepository  accTypeRepo = new AccountTypeRepository();
+    AccountTypeService accountTypeService = new AccountTypeService(accTypeRepo);
+
 
     @FXML
-    protected void onHelloButtonClick() {
+    private void handleSaveAccountType() {
         try {
-            // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/add-account-type.fxml"));
-            AnchorPane newPane = loader.load();
+            String name = accountTypeField.getText();
+            double interestRate = Double.parseDouble(interestRateField.getText());
+            boolean minBalanceRequired = minBalanceRequiredCheck.isSelected();
+            double minBalance = minBalanceRequired ? Double.parseDouble(minBalanceField.getText()) : 0.0;
+            boolean overdraftAllowed = overdraftAllowedCheck.isSelected();
+            double overdraftLimit = overdraftAllowed ? Double.parseDouble(overdraftLimitField.getText()) : 0.0;
+            String description = descriptionArea.getText();
 
-            // Create a new scene with the loaded FXML content
-            Scene newScene = new Scene(newPane);
 
-            // Get the current stage (window) and set the new scene
-            Stage currentStage = (Stage) welcomeText.getScene().getWindow();
-            currentStage.setScene(newScene);
 
-            // Optionally, you can also set a title for the new stage
-            currentStage.setTitle("Create Account Type");
+            accountTypeService.createAccountType(name, interestRate, minBalanceRequired, minBalance, overdraftAllowed, overdraftLimit, description);
 
-            // Show the new scene
-            currentStage.show();
+            System.out.println(accountTypeService.getAllAccountTypes());
+            // Clear fields after saving
+//            accountTypeField.clear();
+//            interestRateField.clear();
+//            minBalanceRequiredCheck.setSelected(false);
+//            minBalanceField.clear();
+//            overdraftAllowedCheck.setSelected(false);
+//            overdraftLimitField.clear();
+//            descriptionArea.clear();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid number input.");
         }
+
     }
 
 }
