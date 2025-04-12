@@ -59,15 +59,24 @@ public class HelloApplication extends Application {
         try {
             // Current Account
             Account currAccount = accSrv.createAccount("Eric");
-            System.out.println(accSrv.getBalance(currAccount.getAccountNumber()));
+            System.out.println(currAccount.getBalance());
+
+            accSrv.deposit(1, 300);
+
+            System.out.println(currAccount.getBalance());
 
             // Saving Account
             Account savingAcc = accSrv.createAccount("Tuyizere", 400);
-            System.out.println("Saving Acc Balance " + accSrv.getBalance(savingAcc.getAccountNumber()));
+            System.out.println(savingAcc);
+            accSrv.deposit(2,500);
+            System.out.println(savingAcc);
 
-            // Fixed Account
-            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,1));
-            System.out.println("FIXED ACCOUNT BALANCE " + accSrv.getBalance(fixedAcc.getAccountNumber()));
+
+//            // Fixed Account
+//            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,1));
+////            System.out.println("FIXED ACCOUNT BALANCE " + accSrv.getBalance(fixedAcc.getAccountNumber()));
+
+
 
         } catch (RuntimeException e) {
             // Code to handle the exception

@@ -24,7 +24,7 @@ public abstract class AbstractAccount implements Account{
     }
 
     public void deposit(double amount) {
-
+            this.balance += amount;
     }
     public abstract void withdraw(double amount);
 
@@ -33,15 +33,20 @@ public abstract class AbstractAccount implements Account{
     }
 
     public void setBalance(double balance) {
-        this.balance = balance;
+        this.balance += balance;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
     }
 
     public LinkedList<String> getLastNTransactions() {
         return null;
     }
 
-    @Override
-    public int getAccountNumber() {
-        return accountNumber;
-    }
+
 }

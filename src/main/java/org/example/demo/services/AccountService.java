@@ -74,9 +74,21 @@ public class AccountService {
         return acc.getBalance();
     }
 
-//    public void deposit(String accountNumber, double amount) {
-//        accountRepository.deposit(accountNumber, amount);
-//    }
+    public void deposit(int accountNumber, double amount) {
+        // Get the account
+        Account account = accountRepository.getAccountByAccountNumber(accountNumber);
+
+        // Check if account is fixed and reject
+       if(account.getType().getName().equals("fixed")){
+           throw new RuntimeException("Deposit not allowed on fixed account");
+       }
+
+        // Update Balance
+        account.setBalance(amount);
+
+       // Persist changes
+        accountRepository.updateAccount(account);
+    }
 //
 //    public void withdraw(String accountNumber, double amount) {
 //        accountRepository.withdraw(accountNumber, amount);
