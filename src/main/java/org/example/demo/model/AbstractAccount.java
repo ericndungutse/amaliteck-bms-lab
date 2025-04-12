@@ -1,7 +1,5 @@
 package org.example.demo.model;
 
-import org.example.demo.accountTypes.AccountType;
-
 import java.util.LinkedList;
 import java.util.List;
 

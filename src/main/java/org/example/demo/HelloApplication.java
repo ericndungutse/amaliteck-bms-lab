@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.demo.model.Account;
-import org.example.demo.accountTypes.AccountType;
-import org.example.demo.accountTypes.AccountTypeEnum;
-import org.example.demo.model.SavingAccount;
-import org.example.demo.repositories.AccountRepository;
+import org.example.demo.model.AccountType;
 import org.example.demo.repositories.AccountTypeRepository;
 import org.example.demo.services.AccountService;
 import org.example.demo.services.AccountTypeService;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class HelloApplication extends Application {
     @Override
@@ -59,9 +57,17 @@ public class HelloApplication extends Application {
 
 
         try {
-        System.out.println(accSrv.createAccount("Eric"));
-        System.out.println(accSrv.createAccount("Tuyizere", 400));
-        System.out.println(accSrv.createAccount(5000, "Ndungutse"));
+            // Current Account
+            Account currAccount = accSrv.createAccount("Eric");
+            System.out.println(accSrv.getBalance(currAccount.getAccountNumber()));
+
+            // Saving Account
+            Account savingAcc = accSrv.createAccount("Tuyizere", 400);
+            System.out.println("Saving Acc Balance " + accSrv.getBalance(savingAcc.getAccountNumber()));
+
+            // Fixed Account
+            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,1));
+            System.out.println("FIXED ACCOUNT BALANCE " + accSrv.getBalance(fixedAcc.getAccountNumber()));
 
         } catch (RuntimeException e) {
             // Code to handle the exception

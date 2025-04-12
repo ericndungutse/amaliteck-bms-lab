@@ -1,11 +1,13 @@
 package org.example.demo.services;
 
-import org.example.demo.accountTypes.AccountType;
+import org.example.demo.model.AccountType;
 import org.example.demo.model.Account;
 import org.example.demo.model.CurrentAccount;
 import org.example.demo.model.FixedAccount;
 import org.example.demo.model.SavingAccount;
 import org.example.demo.repositories.AccountRepository;
+
+import java.time.LocalDate;
 
 public class AccountService {
     private final AccountRepository accountRepository;
@@ -50,12 +52,12 @@ public class AccountService {
     }
 
     // Create Fixed Account
-    public Account createAccount(double principal, String holderName) {
+    public Account createAccount(double principal, String holderName, LocalDate maturityDate) {
         // Get AccountType
         AccountType accountType = accountTypeService.getAccountTypeByName("fixed");
 
         // Instantiate Saving Account
-        Account newAccount = new FixedAccount(holderName, accountType, principal);
+        Account newAccount = new FixedAccount(holderName, accountType, principal, maturityDate);
 
         // Save / persist it to the repository
         accountRepository.createAccount(newAccount);
@@ -63,6 +65,14 @@ public class AccountService {
         return newAccount;
     }
 
+    // Get Balance
+    public double getBalance(int accountNumber) {
+        // Get account from repository
+        Account acc = accountRepository.getAccountByAccountNumber(accountNumber);
+
+        // Return its balance
+        return acc.getBalance();
+    }
 
 //    public void deposit(String accountNumber, double amount) {
 //        accountRepository.deposit(accountNumber, amount);
@@ -72,9 +82,6 @@ public class AccountService {
 //        accountRepository.withdraw(accountNumber, amount);
 //    }
 //
-//    public double getBalance(String accountNumber) {
-//        return accountRepository.getBalance(accountNumber);
-//    }
 //
 //    public List<Transaction> getLastNTransactions(String accountNumber, int n) {
 //        return accountRepository.getLastNTransactions(accountNumber, n);

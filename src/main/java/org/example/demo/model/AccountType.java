@@ -1,4 +1,4 @@
-package org.example.demo.accountTypes;
+package org.example.demo.model;
 
 
 public class AccountType {

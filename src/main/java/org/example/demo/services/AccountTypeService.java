@@ -1,10 +1,11 @@
 package org.example.demo.services;
 
-import org.example.demo.accountTypes.AccountType;
+
+
+import org.example.demo.model.AccountType;
 import org.example.demo.repositories.AccountTypeRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public class AccountTypeService {

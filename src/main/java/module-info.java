@@ -15,6 +15,6 @@ module org.example.demo {
     exports org.example.demo;
     exports org.example.demo.model;
     opens org.example.demo.model to javafx.fxml;
-    exports org.example.demo.accountTypes;
-    opens org.example.demo.accountTypes to javafx.fxml;
+
+
 }

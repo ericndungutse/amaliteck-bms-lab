@@ -1,7 +1,5 @@
 package org.example.demo.model;
 
-import org.example.demo.accountTypes.AccountType;
-
 public class SavingAccount extends AbstractAccount {
     private final double initialDeposit;
 
@@ -16,7 +14,6 @@ public class SavingAccount extends AbstractAccount {
     public void withdraw(double amount) {
         // Calculate Balance
         double balance = this.balance - amount;
-
 
         // Check if balance is less than minimum balance
         if (balance < this.type.getMinBalance()) {

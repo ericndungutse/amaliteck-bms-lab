@@ -1,6 +1,6 @@
 package org.example.demo.repositories;
 
-import org.example.demo.accountTypes.AccountType;
+import org.example.demo.model.AccountType;
 
 import java.util.ArrayList;
 import java.util.List;

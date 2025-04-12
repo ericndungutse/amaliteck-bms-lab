@@ -1,7 +1,5 @@
 package org.example.demo.model;
 
-import org.example.demo.accountTypes.AccountType;
-
 public class CurrentAccount extends AbstractAccount {
     public CurrentAccount(AccountType accountType, String holderName) {
         super(accountType, holderName);

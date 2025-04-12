@@ -1,15 +1,17 @@
 package org.example.demo.model;
 
-import org.example.demo.accountTypes.AccountType;
+import java.time.LocalDate;
 
 public class FixedAccount extends AbstractAccount{
     private double principal;
     private double interestRate;
+    private LocalDate maturityDate;
 
-    public FixedAccount(String holderName, AccountType accountType, double principal) {
+    public FixedAccount(String holderName, AccountType accountType, double principal, LocalDate maturityDate) {
         super(accountType, holderName);
         this.interestRate = accountType.getFixedAccInterestRate();
         this.principal = principal;
+        this.maturityDate = maturityDate;
         this.transactions.add(new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION, principal));
     }
 
@@ -28,7 +30,13 @@ public class FixedAccount extends AbstractAccount{
 
     @Override
     public double getBalance(){
-        return  this.balance + 1;
+        LocalDate today = LocalDate.now();
+
+        if (today.isBefore(this.maturityDate)) {
+            return -1;
+        }
+
+        return this.principal + (this.principal * this.interestRate); // Or this.balance + interest if you're calculating it elsewhere
     }
 
     @Override

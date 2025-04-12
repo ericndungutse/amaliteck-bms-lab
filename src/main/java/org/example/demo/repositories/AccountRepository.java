@@ -1,10 +1,8 @@
 package org.example.demo.repositories;
 import org.example.demo.model.Account;
-import org.example.demo.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AccountRepository {
     private final List<Account> accounts = new ArrayList<>();
