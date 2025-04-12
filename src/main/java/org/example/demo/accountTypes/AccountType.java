@@ -24,6 +24,8 @@ public class AccountType {
         this.name = name;
         this.minBalanceRequired = minBalanceRequired;
         this.minBalance = minBalance;
+        this.fixedAccInterestRate = fixedAccInterestRate;
+        this.savingAccInterestRate = savingAccInterestRate;
         this.overdraftAllowed = overdraftAllowed;
         this.overdraftLimit = overdraftLimit;
         this.description = description;

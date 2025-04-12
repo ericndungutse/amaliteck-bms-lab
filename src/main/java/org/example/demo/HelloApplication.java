@@ -48,11 +48,21 @@ public class HelloApplication extends Application {
                 0,
                 "Earn a lot");
 
-        System.out.println(accSrv.createAccount("Eric"));
+       AccountType fixedAccType =  accTypeSrv.createAccountType( "fixed",
+                1.2,
+                0,
+                false,
+                0,
+                false,
+                0,
+                "Earn a lot");
+
 
         try {
-            // Code that may throw an exception
-        System.out.println(accSrv.createAccount("Tuyizere", 200));
+        System.out.println(accSrv.createAccount("Eric"));
+        System.out.println(accSrv.createAccount("Tuyizere", 400));
+        System.out.println(accSrv.createAccount(5000, "Ndungutse"));
+
         } catch (RuntimeException e) {
             // Code to handle the exception
             System.out.println("👎" + e.getMessage());

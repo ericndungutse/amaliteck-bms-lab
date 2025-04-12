@@ -3,6 +3,7 @@ package org.example.demo.services;
 import org.example.demo.accountTypes.AccountType;
 import org.example.demo.model.Account;
 import org.example.demo.model.CurrentAccount;
+import org.example.demo.model.FixedAccount;
 import org.example.demo.model.SavingAccount;
 import org.example.demo.repositories.AccountRepository;
 
@@ -29,7 +30,6 @@ public class AccountService {
         return newAccount;
     }
 
-
     // Create Saving Account
     public Account createAccount(String holderName, double initialDeposit) {
         // Get AccountType
@@ -42,6 +42,20 @@ public class AccountService {
 
         // Instantiate Saving Account
         Account newAccount = new SavingAccount(holderName, accountType, initialDeposit);
+
+        // Save / persist it to the repository
+        accountRepository.createAccount(newAccount);
+
+        return newAccount;
+    }
+
+    // Create Fixed Account
+    public Account createAccount(double principal, String holderName) {
+        // Get AccountType
+        AccountType accountType = accountTypeService.getAccountTypeByName("fixed");
+
+        // Instantiate Saving Account
+        Account newAccount = new FixedAccount(holderName, accountType, principal);
 
         // Save / persist it to the repository
         accountRepository.createAccount(newAccount);
