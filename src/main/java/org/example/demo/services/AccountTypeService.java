@@ -18,7 +18,6 @@ public class AccountTypeService {
     public AccountType createAccountType(
             String name,
             double fixedAccInterestRate,
-            double savingAccInterestRate,
             boolean minBalanceRequired,
             double minBalance,
             boolean overdraftAllowed,
@@ -28,7 +27,6 @@ public class AccountTypeService {
         AccountType newAccountType = new AccountType(
                 name,
                 fixedAccInterestRate,
-                savingAccInterestRate,
                 minBalanceRequired,
                 minBalance,
                 overdraftAllowed,
@@ -44,7 +42,6 @@ public class AccountTypeService {
     public void updateAccountType(
             String name,
             double fixedAccInterestRate,
-            double savingAccInterestRate,
             boolean minBalanceRequired,
             double minBalance,
             boolean overdraftAllowed,
@@ -55,7 +52,6 @@ public class AccountTypeService {
 
         if (optionalAccountType != null ) {
             optionalAccountType.setFixedAccInterestRate(fixedAccInterestRate);
-            optionalAccountType.setSavingAccInterestRate(savingAccInterestRate);
             optionalAccountType.setMinBalanceRequired(minBalanceRequired);
             optionalAccountType.setMinBalance(minBalance);
             optionalAccountType.setOverdraftAllowed(overdraftAllowed);

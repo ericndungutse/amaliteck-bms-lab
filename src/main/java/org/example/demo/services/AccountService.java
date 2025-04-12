@@ -1,10 +1,6 @@
 package org.example.demo.services;
 
-import org.example.demo.model.AccountType;
-import org.example.demo.model.Account;
-import org.example.demo.model.CurrentAccount;
-import org.example.demo.model.FixedAccount;
-import org.example.demo.model.SavingAccount;
+import org.example.demo.model.*;
 import org.example.demo.repositories.AccountRepository;
 
 import java.time.LocalDate;
@@ -84,15 +80,22 @@ public class AccountService {
        }
 
         // Update Balance
-        account.setBalance(amount);
+        account.setBalance(account.getBalance() + amount);
+        account.addTransaction(new Transaction(TransactionTypeEnum.DEPOSIT, amount));
 
        // Persist changes
         accountRepository.updateAccount(account);
     }
-//
-//    public void withdraw(String accountNumber, double amount) {
-//        accountRepository.withdraw(accountNumber, amount);
-//    }
+
+    // Withdraw
+    public void withdraw(int accountNumber, double amount) {
+        // Get the account
+        Account account = accountRepository.getAccountByAccountNumber(accountNumber);
+        account.withdraw(amount);
+        account.addTransaction(new Transaction(TransactionTypeEnum.WITHDRAWAL, amount));
+        accountRepository.updateAccount(account);
+        System.out.println("Withdrawal of " + amount + " successful. New balance: " + accountRepository.getAccountByAccountNumber(accountNumber).getBalance());
+    }
 //
 //
 //    public List<Transaction> getLastNTransactions(String accountNumber, int n) {

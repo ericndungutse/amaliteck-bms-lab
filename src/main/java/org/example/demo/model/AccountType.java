@@ -4,7 +4,6 @@ package org.example.demo.model;
 public class AccountType {
     private String name;
     private double fixedAccInterestRate = 0.0;
-    private double savingAccInterestRate = 0.0;
     private boolean minBalanceRequired;
     private double minBalance;
     private boolean overdraftAllowed;
@@ -14,7 +13,6 @@ public class AccountType {
     public AccountType(
             String name,
             double fixedAccInterestRate,
-            double savingAccInterestRate,
             boolean minBalanceRequired,
             double minBalance,
             boolean overdraftAllowed,
@@ -25,7 +23,6 @@ public class AccountType {
         this.minBalanceRequired = minBalanceRequired;
         this.minBalance = minBalance;
         this.fixedAccInterestRate = fixedAccInterestRate;
-        this.savingAccInterestRate = savingAccInterestRate;
         this.overdraftAllowed = overdraftAllowed;
         this.overdraftLimit = overdraftLimit;
         this.description = description;
@@ -77,14 +74,6 @@ public class AccountType {
 
     public void setFixedAccInterestRate(double fixedAccInterestRate) {
         this.fixedAccInterestRate = fixedAccInterestRate;
-    }
-
-    public double getSavingAccInterestRate() {
-        return savingAccInterestRate;
-    }
-
-    public void setSavingAccInterestRate(double savingAccInterestRate) {
-        this.savingAccInterestRate = savingAccInterestRate;
     }
 
     public String getDescription() {

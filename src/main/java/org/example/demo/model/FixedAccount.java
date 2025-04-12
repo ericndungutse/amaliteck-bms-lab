@@ -12,12 +12,24 @@ public class FixedAccount extends AbstractAccount{
         this.interestRate = accountType.getFixedAccInterestRate();
         this.principal = principal;
         this.maturityDate = maturityDate;
+        this.balance = principal;
         this.transactions.add(new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION, principal));
     }
 
-    @Override
     public void withdraw(double amount) {
+        LocalDate today = LocalDate.now();
 
+        if (today.isBefore(this.maturityDate)) {
+            throw new RuntimeException("Withdrawal denied: Account has not matured.");
+        } else if (amount > this.getBalance()) {
+            throw new RuntimeException("Withdrawal denied: Insufficient balance.");
+        } else {
+            this.setBalance(this.getBalance() - amount);
+        }
+    }
+
+    public LocalDate getMaturityDate() {
+        return maturityDate;
     }
 
     public void setInterestRate(double interestRate) {
@@ -31,12 +43,10 @@ public class FixedAccount extends AbstractAccount{
     @Override
     public double getBalance(){
         LocalDate today = LocalDate.now();
-
         if (today.isBefore(this.maturityDate)) {
             return -1;
         }
-
-        return this.principal + (this.principal * this.interestRate); // Or this.balance + interest if you're calculating it elsewhere
+        return this.principal + (this.principal * this.interestRate);
     }
 
     @Override

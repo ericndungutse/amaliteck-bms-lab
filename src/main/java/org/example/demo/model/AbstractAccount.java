@@ -33,7 +33,7 @@ public abstract class AbstractAccount implements Account{
     }
 
     public void setBalance(double balance) {
-        this.balance += balance;
+        this.balance = balance;
     }
 
     public AccountType getType() {
@@ -44,9 +44,15 @@ public abstract class AbstractAccount implements Account{
         return accountNumber;
     }
 
+
+    @Override
+    public void addTransaction(Transaction transaction) {
+    this.transactions.add(transaction);
+    }
+
+
     public LinkedList<String> getLastNTransactions() {
         return null;
     }
-
 
 }

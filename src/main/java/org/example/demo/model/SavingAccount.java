@@ -22,10 +22,6 @@ public class SavingAccount extends AbstractAccount {
 
         // Update balance
         this.setBalance(balance);
-
-        // create transaction
-        Transaction trans = new Transaction(TransactionTypeEnum.INITIAL_TRANSACTION,amount);
-        this.transactions.add(trans);
     }
 
     @Override
@@ -37,11 +33,5 @@ public class SavingAccount extends AbstractAccount {
                 ", balance=" + balance +
                 ", transactions=" + transactions +
                 '}';
-    }
-
-    @Override
-    public double getBalance() {
-        double rate = this.type.getSavingAccInterestRate();
-        return this.balance + (this.balance * rate);
     }
 }

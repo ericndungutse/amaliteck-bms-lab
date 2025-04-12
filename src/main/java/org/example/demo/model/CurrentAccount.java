@@ -15,10 +15,9 @@ public class CurrentAccount extends AbstractAccount {
         }
         // If No, update balance
         this.setBalance(balance);
-
-        // Create Transaction
-        Transaction trans = new Transaction(TransactionTypeEnum.DEPOSIT, amount);
     }
+
+
 
     @Override
     public String toString() {

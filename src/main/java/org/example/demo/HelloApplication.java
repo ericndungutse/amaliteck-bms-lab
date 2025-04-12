@@ -30,7 +30,6 @@ public class HelloApplication extends Application {
 
        AccountType currentAccType =  accTypeSrv.createAccountType( "current",
                 0,
-                0,
                 false,
                 0,
                 true,
@@ -39,7 +38,6 @@ public class HelloApplication extends Application {
 
        AccountType savingAccType =  accTypeSrv.createAccountType( "saving",
                 0,
-                0.4,
                 true,
                 300,
                 false,
@@ -47,34 +45,45 @@ public class HelloApplication extends Application {
                 "Earn a lot");
 
        AccountType fixedAccType =  accTypeSrv.createAccountType( "fixed",
-                1.2,
-                0,
+                1.02,
                 false,
                 0,
                 false,
                 0,
                 "Earn a lot");
 
-
         try {
             // Current Account
-            Account currAccount = accSrv.createAccount("Eric");
-            System.out.println(currAccount.getBalance());
+//            Account currAccount = accSrv.createAccount("Eric");
+//
+//            accSrv.deposit(1, 300);
+//            System.out.println(accSrv.getAccountByAccNumber(1));
+//            accSrv.deposit(1,200);
+//            System.out.println(accSrv.getAccountByAccNumber(1));
+//
+//            System.out.println("Afyer withdraw");
+//            accSrv.withdraw(1, 1000);
+//            System.out.println(accSrv.getAccountByAccNumber(1));
 
-            accSrv.deposit(1, 300);
 
-            System.out.println(currAccount.getBalance());
+//            System.out.println(currAccount);
+//            accSrv.withdraw(currAccount.getAccountNumber(), 100);
+//            System.out.println(currAccount);
 
             // Saving Account
-            Account savingAcc = accSrv.createAccount("Tuyizere", 400);
-            System.out.println(savingAcc);
-            accSrv.deposit(2,500);
-            System.out.println(savingAcc);
-
+//            Account savingAcc = accSrv.createAccount("Tuyizere", 500);
+//            accSrv.deposit(savingAcc.getAccountNumber(), 500);
+//            accSrv.withdraw(1,200);
+//
+//            System.out.println(accSrv.getAccountByAccNumber(1));
 
 //            // Fixed Account
-//            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,1));
-////            System.out.println("FIXED ACCOUNT BALANCE " + accSrv.getBalance(fixedAcc.getAccountNumber()));
+            Account fixedAcc = accSrv.createAccount(5000, "Ndungute", LocalDate.of(2024,12,12));
+            System.out.println(fixedAcc);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
+            System.out.println(fixedAcc);
+            accSrv.withdraw(fixedAcc.getAccountNumber(), 400);
+            System.out.println(fixedAcc);
 
 
 
