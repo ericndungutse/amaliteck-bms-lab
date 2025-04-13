@@ -20,8 +20,6 @@ import java.io.IOException;
 
 
 public class HelloController {
-
-
     private Label welcomeText;
 
     @FXML
@@ -37,5 +35,13 @@ public class HelloController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void handleListAccountTypes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("account-types-list-view.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
     }
 }

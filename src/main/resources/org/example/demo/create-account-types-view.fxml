@@ -14,12 +14,17 @@
     </padding>
 
     <children>
-        <Button text="Go to Create Account" onAction="#handleNavigateToCreateAccount"/>
-        <Label text="Create New Account Type" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-
-        <Button text="Home" />
+<!--        <Button text="Go to Create Account" onAction="#handleNavigateToCreateAccount"/>-->
+<!--        <Label text="Create New Account Type" style="-fx-font-size: 16px; -fx-font-weight: bold;" />-->
 
 
+
+            <VBox>
+                <Button fx:id="goToHomeBtn"
+                        text="🏠 Home"
+                        onAction="#handleGoToHome"
+                        styleClass="link-button"/>
+            </VBox>
 
         <GridPane hgap="10" vgap="10">
             <columnConstraints>
@@ -31,7 +36,9 @@
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
 
+
             <children>
+
                 <!-- Account Name -->
                 <Label text="Account Type Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
                 <TextField fx:id="accountTypeField" promptText="e.g. Savings"
@@ -70,7 +77,7 @@
             </children>
         </GridPane>
 
-        <Button fx:id="saveAccountTypeButton"
+        <Button
                 text="Save"
                 onAction="#handleSaveAccountType" />
     </children>

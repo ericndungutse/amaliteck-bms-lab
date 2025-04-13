@@ -35,6 +35,11 @@
                 onAction="#handleNavigateToAccountOperations"
                 styleClass="link-button"/>
 
+        <Button fx:id="listAccountTypesBtn"
+                text="⚙️ Account Types"
+                onAction="#handleListAccountTypes"
+                styleClass="link-button"/>
+
     </VBox>
 
 </AnchorPane>
