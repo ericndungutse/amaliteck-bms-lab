@@ -10,8 +10,8 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountTypeService accountTypeService;
 
-    public AccountService(AccountTypeService accountTypeService) {
-        this.accountRepository = new AccountRepository();
+    public AccountService(AccountTypeService accountTypeService, AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
         this.accountTypeService = accountTypeService;
     }
 

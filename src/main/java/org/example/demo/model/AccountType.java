@@ -86,13 +86,5 @@ public class AccountType {
 
     @Override
     public String toString() {
-        return "AccountType{" +
-                ", name=" + name +
-                ", minBalanceRequired=" + minBalanceRequired +
-                ", minBalance=" + minBalance +
-                ", overdraftAllowed=" + overdraftAllowed +
-                ", overdraftLimit=" + overdraftLimit +
-                ", description='" + description + '\'' +
-                '}';
-    }
+        return this.name;}
 }

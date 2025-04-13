@@ -14,7 +14,13 @@
     </padding>
 
     <children>
+        <Button text="Go to Create Account" onAction="#handleNavigateToCreateAccount"/>
         <Label text="Create New Account Type" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+        <Button text="Manage Account" onAction="#handleNavigateToAccountOperations"/>
+        <Label text="Manage Account" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+
 
         <GridPane hgap="10" vgap="10">
             <columnConstraints>
