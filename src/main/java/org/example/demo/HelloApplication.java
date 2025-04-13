@@ -50,12 +50,14 @@ public class HelloApplication extends Application {
                 0,
                 "Earn a lot");
 
+       // Testing Data
+       // Current Account
        accountService.createAccount("Eric");
        accountService.deposit(1, 500);
-       accountService.createAccount(500, "Ndungutse", LocalDate.parse("2025-12-12"));
+       // FIxed
+       accountService.createAccount(500, "Ndungutse", LocalDate.parse("2024-12-12"));
+       // Saving
+       accountService.createAccount("tuyizere", 1000);
         launch();
     }
-
-
-
 }

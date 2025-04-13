@@ -8,13 +8,10 @@ import org.example.demo.services.AccountTypeService;
 
 public class AccountOperationsController {
     @FXML
-    private TextField accountIdField;
+    private TextField accountNumberField;
 
     @FXML
     private TextArea output;
-
-    @FXML
-    private Label balanceLabel;
 
     @FXML
     private TextField amountField;
@@ -24,17 +21,16 @@ public class AccountOperationsController {
 
     // Check Balance
     public void handleCheckBalance(ActionEvent actionEvent) {
-        String accountIdText = accountIdField.getText();
-        if (accountIdText == null || accountIdText.isBlank()) {
+        String accountNumberText = accountNumberField.getText();
+        if (accountNumberText == null ||accountNumberText.isBlank()) {
             showError("Please enter a valid account ID.");
             return;
         }
 
         try {
-            int accountId = Integer.parseInt(accountIdText);
-            double balance = accountService.getBalance(accountId);
-            System.out.println(balance);
-            balanceLabel.setText("Current Balance: " + balance);
+            int accountNumber = Integer.parseInt(accountNumberText);
+            double balance = accountService.getBalance(accountNumber);
+            showInfo("Balance","Current Balance: " + balance);
         } catch (NumberFormatException e) {
            showError("Invalid account ID format.");
         } catch (Exception e) {
@@ -44,20 +40,20 @@ public class AccountOperationsController {
 
     // Deposit
     public void handleDeposit(ActionEvent actionEvent) {
-        String idText = accountIdField.getText();
+        String accountNumberText = accountNumberField.getText();
         String amountText = amountField.getText();
 
-        if (idText.isEmpty() || amountText.isEmpty()) {
-            showError("Please fill in both Account ID and Amount.");
+        if (accountNumberText.isEmpty() || amountText.isEmpty()) {
+            showError("Please fill in both Account number and Amount.");
             return;
         }
 
         try {
-            int accountId = Integer.parseInt(idText);
+            int accountNumber = Integer.parseInt(accountNumberText);
             double amount = Double.parseDouble(amountText);
 
-            accountService.deposit(accountId, amount);
-            output.setText("Deposit successful!");
+            accountService.deposit(accountNumber, amount);
+            showInfo("Deposit successful","Deposit successful! New balance is " + accountService.getBalance(accountNumber));
 
         } catch (NumberFormatException e) {
             showError("Invalid input. Please enter numeric values.");
@@ -68,6 +64,38 @@ public class AccountOperationsController {
 
     // Withdraw
     public void handleWithdraw(ActionEvent actionEvent) {
+        // Get the withdrawal amount from the input field;
+        String withdrawalAmountText = amountField.getText();
+        // Get Account number
+        String accountNumberText = accountNumberField.getText();
+
+        // Check if the input is not empty and is a valid number
+        if (accountNumberText.isEmpty() || withdrawalAmountText.isEmpty()) {
+            showError("Please fill in both Account Number and Amount.");
+            return;
+        }
+
+        double withdrawalAmount;
+        int accountNumber;
+        try {
+            withdrawalAmount = Double.parseDouble(withdrawalAmountText);
+            accountNumber = Integer.parseInt(accountNumberText);
+        } catch (NumberFormatException e) {
+            showError("Invalid withdrawal amount or account number. Please enter a valid number.");
+            return;
+        }
+
+        try {
+            // Call the account service to withdraw the amount
+            accountService.withdraw(accountNumber, withdrawalAmount);
+
+            // Show the updated balance to the user
+            showInfo("Withdrawal successful", "New balance: " + accountService.getBalance(accountNumber));
+
+        } catch (RuntimeException e) {
+            // Handle any exceptions thrown by the accountService
+            showError(e.getMessage());
+        }
     }
 
     public void handleGetLastNTransactions(ActionEvent actionEvent) {
@@ -77,6 +105,16 @@ public class AccountOperationsController {
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+    // Show info message in an alert
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

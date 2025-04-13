@@ -13,12 +13,11 @@
 
     <VBox spacing="10">
         <Label text="Account Number:"/>
-        <TextField fx:id="accountIdField" promptText="Enter account Number"/>
+        <TextField fx:id="accountNumberField" promptText="Enter account Number"/>
     </VBox>
 
     <HBox spacing="10">
         <Button text="Check Balance" onAction="#handleCheckBalance"/>
-        <Label fx:id="balanceLabel" text="Balance: N/A"/>
     </HBox>
 
     <Label text="Deposit/Withdraw" style="-fx-font-size: 15px; -fx-font-weight: bold;"/>

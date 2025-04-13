@@ -8,16 +8,15 @@ public class CurrentAccount extends AbstractAccount {
     public void withdraw(double amount) {
         // Calculate balance
         double balance = this.balance - amount;
+            System.out.println(balance + " " + -this.type.getOverdraftLimit());
 
         // Check if balance is greater than overdraftLimit and throw an error
-        if( Math.abs(balance) > this.type.getOverdraftLimit()){
+        if( balance < -this.type.getOverdraftLimit()){
             throw new RuntimeException("Insufficient fund.");
         }
         // If No, update balance
         this.setBalance(balance);
     }
-
-
 
     @Override
     public String toString() {
