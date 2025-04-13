@@ -52,6 +52,7 @@ public class HelloApplication extends Application {
 
        accountService.createAccount("Eric");
        accountService.deposit(1, 500);
+       accountService.createAccount(500, "Ndungutse", LocalDate.parse("2025-12-12"));
         launch();
     }
 

@@ -35,5 +35,5 @@
         <Button text="Fetch" onAction="#handleGetLastNTransactions"/>
     </HBox>
 
-    <TextArea fx:id="transactionsArea" promptText="Transactions will appear here..." editable="false" prefRowCount="6" wrapText="true"/>
+    <TextArea fx:id="output" promptText="Transaction history will here..." editable="false" prefRowCount="6" wrapText="true"/>
 </VBox>
