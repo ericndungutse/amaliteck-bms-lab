@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.demo.constants.AppConstants;
 import org.example.demo.model.Account;
 import org.example.demo.model.AccountType;
 import org.example.demo.repositories.AccountTypeRepository;
@@ -26,7 +27,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-       AccountType currentAccType =  accountTypeService.createAccountType( "current",
+       AccountType currentAccType =  accountTypeService.createAccountType( AppConstants.CURRENT,
                 0,
                 false,
                 0,
@@ -34,7 +35,7 @@ public class HelloApplication extends Application {
                 500.0,
                 "Earn a lot");
 
-       AccountType savingAccType =  accountTypeService.createAccountType( "saving",
+       AccountType savingAccType =  accountTypeService.createAccountType( AppConstants.SAVING,
                 0,
                 true,
                 300,
@@ -42,7 +43,7 @@ public class HelloApplication extends Application {
                 0,
                 "Earn a lot");
 
-       AccountType fixedAccType =  accountTypeService.createAccountType( "fixed",
+       AccountType fixedAccType =  accountTypeService.createAccountType( AppConstants.FIXED,
                 0.12,
                 false,
                 0,

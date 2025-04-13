@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.demo.constants.AppConstants;
 import org.example.demo.model.Account;
 import org.example.demo.model.AccountType;
 import org.example.demo.repositories.AccountTypeRepository;
@@ -88,9 +89,9 @@ public class CreateAccountController implements Initializable {
             if (newVal != null) {
                 String typeName = newVal.getName().toLowerCase();
 
-                boolean isFixed = typeName.equals("fixed");
-                boolean isSaving = typeName.equals("saving");
-                boolean isCurrent = typeName.equals("current");
+                boolean isFixed = typeName.equals(AppConstants.FIXED);
+                boolean isSaving = typeName.equals(AppConstants.SAVING);
+                boolean isCurrent = typeName.equals(AppConstants.CURRENT);
 
                 if(isFixed){
 
@@ -140,11 +141,11 @@ public class CreateAccountController implements Initializable {
         }
 
         // if user selected current -> call service method that creates for current
-        if(selected.getName().equals("current")){
+        if(selected.getName().equals(AppConstants.CURRENT)){
            Account newAcc =  accountService.createAccount(holderNameField.getText());
            showInfo("Account Created", "Your account has bee created successfully. Your account number is " + newAcc.getAccountNumber());
         // if user selected saving -> call service method that creates for saving
-        } else if (selected.getName().equals("saving")) {
+        } else if (selected.getName().equals(AppConstants.SAVING)) {
             // Get the text from the initial deposit field
             String initialDepositText = initialDepositField.getText();
 
@@ -165,7 +166,7 @@ public class CreateAccountController implements Initializable {
             }
 
             // Ensure initial deposit is greater or equal to min balance
-            double minBalance = accountTypeService.getAccountTypeByName("saving").getMinBalance();
+            double minBalance = accountTypeService.getAccountTypeByName(AppConstants.SAVING).getMinBalance();
             if(initialDeposit < minBalance){
                 showError("Minimum initial deposit is " + minBalance);
             }
@@ -174,7 +175,7 @@ public class CreateAccountController implements Initializable {
             Account acc = accountService.createAccount(holderNameField.getText(), initialDeposit);
             showInfo("Account Created", "Your account has bee created successfully. Your account number is " + acc.getAccountNumber());
         // if user selected fixed -> call service method that creates for fixed
-        } else if (selected.getName().equals("fixed")) {
+        } else if (selected.getName().equals(AppConstants.FIXED)) {
             // Get the text from the initial deposit field
             String initialDepositText = initialDepositField.getText();
 

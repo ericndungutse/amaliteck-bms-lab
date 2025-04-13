@@ -1,5 +1,6 @@
 package org.example.demo.services;
 
+import org.example.demo.constants.AppConstants;
 import org.example.demo.model.*;
 import org.example.demo.repositories.AccountRepository;
 
@@ -18,7 +19,7 @@ public class AccountService {
     // Create Current Account
     public Account createAccount(String holderName) {
         // Get AccountType
-        AccountType accountType = accountTypeService.getAccountTypeByName("current");
+        AccountType accountType = accountTypeService.getAccountTypeByName(AppConstants.CURRENT);
 
         // Instantiate Current Account
         Account newAccount = new CurrentAccount(accountType, holderName);
@@ -32,7 +33,7 @@ public class AccountService {
     // Create Saving Account
     public Account createAccount(String holderName, double initialDeposit) {
         // Get AccountType
-        AccountType accountType = accountTypeService.getAccountTypeByName("saving");
+        AccountType accountType = accountTypeService.getAccountTypeByName(AppConstants.SAVING);
 
         // Ensure that initial balance is equal or greater than account type minBalance
         if(initialDeposit < accountType.getMinBalance()){
@@ -51,7 +52,7 @@ public class AccountService {
     // Create Fixed Account
     public Account createAccount(double principal, String holderName, LocalDate maturityDate) {
         // Get AccountType
-        AccountType accountType = accountTypeService.getAccountTypeByName("fixed");
+        AccountType accountType = accountTypeService.getAccountTypeByName(AppConstants.FIXED);
 
         // Instantiate Saving Account
         Account newAccount = new FixedAccount(holderName, accountType, principal, maturityDate);
@@ -76,7 +77,7 @@ public class AccountService {
         Account account = accountRepository.getAccountByAccountNumber(accountNumber);
 
         // Check if account is fixed and reject
-       if(account.getType().getName().equals("fixed")){
+       if(account.getType().getName().equals(AppConstants.FIXED)){
            throw new RuntimeException("Deposit not allowed on fixed account");
        }
 
