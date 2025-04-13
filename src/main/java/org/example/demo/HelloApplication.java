@@ -62,10 +62,20 @@ public class HelloApplication extends Application {
        accountService.deposit(1, 100);
        accountService.deposit(1, 4500);
        accountService.deposit(1, 800);
+
        // FIxed
        accountService.createAccount(500, "Ndungutse", LocalDate.parse("2024-12-12"));
        // Saving
        accountService.createAccount("tuyizere", 1000);
+        accountService.deposit(3, 500);
+        accountService.deposit(3, 500);
+        accountService.deposit(3, 640);
+        accountService.deposit(3, 560);
+        accountService.deposit(3, 500);
+        accountService.deposit(3, 200);
+        accountService.deposit(3, 300);
+        accountService.deposit(3, 4500);
+        accountService.deposit(3, 800);
         launch();
     }
 }

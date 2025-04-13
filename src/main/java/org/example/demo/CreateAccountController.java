@@ -44,8 +44,6 @@ public class CreateAccountController implements Initializable {
     @FXML
     private Label maturityDateInfoLabel;
 
-
-
     private final AccountTypeService accountTypeService = ServiceLocator.getAccountTypeService();
     private final AccountService accountService = ServiceLocator.getAccountService();
 
@@ -72,7 +70,6 @@ public class CreateAccountController implements Initializable {
         });
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Hide initial deposit fields by default
@@ -93,6 +90,7 @@ public class CreateAccountController implements Initializable {
 
                 boolean isFixed = typeName.equals("fixed");
                 boolean isSaving = typeName.equals("saving");
+                boolean isCurrent = typeName.equals("current");
 
                 if(isFixed){
 
@@ -108,7 +106,15 @@ public class CreateAccountController implements Initializable {
                 } else if (isSaving) {
                     initialDepositLabel.setVisible(true);
                     initialDepositField.setVisible(true);
-
+                    maturityDateLabel.setVisible(false);
+                    maturityDatePicker.setVisible(false);
+                    maturityDateInfoLabel.setVisible(false);
+                } else if (isCurrent) {
+                    initialDepositLabel.setVisible(false);
+                    initialDepositField.setVisible(false);
+                    maturityDatePicker.setVisible(false);
+                    maturityDateInfoLabel.setVisible(false);
+                    maturityDateLabel.setVisible(false);
                 }
 
             }
@@ -116,59 +122,106 @@ public class CreateAccountController implements Initializable {
 
     }
 
-    // This method restricts input to only valid doubles
-    // TODO Delete if not necessary
-    private void restrictToDouble(TextField textField) {
-        TextFormatter<Double> formatter = new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.isEmpty()) return change; // Allow empty field
-            try {
-                Double.parseDouble(newText);
-                return change; // Valid double input
-            } catch (NumberFormatException e) {
-                return null; // Invalid input (block it)
-            }
-        });
-
-        textField.setTextFormatter(formatter);
-    }
-
-
-
     @FXML
     private void handleCreateAccount(ActionEvent event) throws IOException {
         AccountType selected = accountTypeComboBox.getValue();
 
+
+        // Ensure user selects an account
+        if (selected == null) {
+            showError("Please select an account type.");
+            return;
+        }
+
+        // Ensure user enters his name
+        if(holderNameField.getText().isEmpty()){
+            showError("Please enter your name in holder name field.");
+            return;
+        }
+
         // if user selected current -> call service method that creates for current
         if(selected.getName().equals("current")){
            Account newAcc =  accountService.createAccount(holderNameField.getText());
-            System.out.println(accountService.getAccountByAccNumber(newAcc.getAccountNumber()));
+           showInfo("Account Created", "Your account has bee created successfully. Your account number is " + newAcc.getAccountNumber());
         // if user selected saving -> call service method that creates for saving
         } else if (selected.getName().equals("saving")) {
             // Get the text from the initial deposit field
             String initialDepositText = initialDepositField.getText();
 
+            // Validate initial deposit
+            if(initialDepositText.isEmpty()){
+                showError("Please enter initial deposit.");
+                return;
+            }
+
+            double initialDeposit;
+            // Validate number
+            try {
             // Convert it to a double, handling potential invalid input
-            double initialDeposit = 0.0;
             initialDeposit = Double.parseDouble(initialDepositText);
+            } catch (NumberFormatException e) {
+                showError("Please enter a valid number for initial deposit.");
+                return;
+            }
+
+            // Ensure initial deposit is greater or equal to min balance
+            double minBalance = accountTypeService.getAccountTypeByName("saving").getMinBalance();
+            if(initialDeposit < minBalance){
+                showError("Minimum initial deposit is " + minBalance);
+            }
+
+            // Create the account
             Account acc = accountService.createAccount(holderNameField.getText(), initialDeposit);
-            System.out.println(acc);
+            showInfo("Account Created", "Your account has bee created successfully. Your account number is " + acc.getAccountNumber());
         // if user selected fixed -> call service method that creates for fixed
         } else if (selected.getName().equals("fixed")) {
             // Get the text from the initial deposit field
             String initialDepositText = initialDepositField.getText();
 
-            // Convert it to a double, handling potential invalid input
+            // Validate initial deposit
+            if(initialDepositText.isEmpty()){
+                showError("Please enter initial deposit.");
+                return;
+            }
+
             double initialDeposit = 0.0;
-            initialDeposit = Double.parseDouble(initialDepositText);
+            try {
+                // Convert it to a double, handling potential invalid input
+                initialDeposit = Double.parseDouble(initialDepositText);
+            } catch (NumberFormatException e) {
+                showError("Please enter a valid number for initial deposit.");
+                return;
+            }
+
             Account acc = accountService.createAccount(initialDeposit, holderNameField.getText(), maturityDatePicker.getValue());
-            System.out.println(acc);
+            showInfo("Account Created", "Your account has bee created successfully. Your account number is " + acc.getAccountNumber());
         }
 
     }
-//        System.out.println(accountService.getAccountByAccNumber(1));
 
+    // Show error message in an alert
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
+    // Show info message in an alert
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
-
+    @FXML
+    public void handleGoToHome(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

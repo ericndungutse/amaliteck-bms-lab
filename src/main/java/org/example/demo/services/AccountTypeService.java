@@ -65,7 +65,7 @@ public class AccountTypeService {
     }
 
 
-
+    // TODO HANDLE EXCEPTION
     public AccountType getAccountTypeByName(String name) {
         return accountTypeRepository.getAccountTypeByAccountName(name);
     }
