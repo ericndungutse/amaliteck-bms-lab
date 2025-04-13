@@ -3,8 +3,11 @@ package org.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.demo.model.Transaction;
 import org.example.demo.services.AccountService;
 import org.example.demo.services.AccountTypeService;
+
+import java.util.List;
 
 public class AccountOperationsController {
     @FXML
@@ -15,6 +18,9 @@ public class AccountOperationsController {
 
     @FXML
     private TextField amountField;
+
+    @FXML
+    private TextField lastNField;
 
     private final AccountTypeService accountTypeService = ServiceLocator.getAccountTypeService();
     private final AccountService accountService = ServiceLocator.getAccountService();
@@ -99,6 +105,50 @@ public class AccountOperationsController {
     }
 
     public void handleGetLastNTransactions(ActionEvent actionEvent) {
+        String lastNText = lastNField.getText().trim();
+        String accountNumberText = accountNumberField.getText();
+
+
+        if (accountNumberText.isEmpty() || lastNText.isEmpty()) {
+            showError("Please fill in both Account number and number of transactions.");
+            return;
+        }
+
+        int n, accountNumber;
+
+        try {
+            n = Integer.parseInt(lastNText);
+            accountNumber = Integer.parseInt(accountNumberText);
+
+            if (n <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            showError("Invalid number entered. Please enter a positive integer for account number and number of transactions.");
+            return;
+        }
+
+        try {
+            List<Transaction> transactions = accountService.getLastNTransactions(accountNumber, n);
+
+            if (transactions.isEmpty()) {
+                output.setText("No transactions found.");
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder("The "+ n + " Recent Transactions:\n");
+            for (Transaction tx : transactions) {
+                sb.append(String.format(
+                        "Type: %s Amount: %.2f Date: %s\n",
+                        tx.getType(),
+                        tx.getAmount(),
+                        tx.getDate()
+                ));
+            }
+
+            output.setText(sb.toString());
+
+        } catch (RuntimeException e) {
+            output.setText("Error: " + e.getMessage());
+        }
     }
 
     // Show error message in an alert
